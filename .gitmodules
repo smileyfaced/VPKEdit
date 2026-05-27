@@ -12,4 +12,5 @@
 	url = https://github.com/craftablescience/discord-rpc-clean
 [submodule "src/shared/thirdparty/sourcepp"]
 	path = ext/shared/sourcepp
-	url = https://github.com/craftablescience/sourcepp
+	url = https://github.com/smileyfaced/sourcepp
+	branch = test1
