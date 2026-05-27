@@ -17,8 +17,9 @@ env:
 jobs:
   build-windows:
     strategy:
+      fail-fast: false
       matrix:
-        build_type: [Release]
+        build_type: [Release, Debug]
         target: [VPKEdit]
     runs-on: windows-2022
     defaults:
