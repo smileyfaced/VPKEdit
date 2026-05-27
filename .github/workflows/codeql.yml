@@ -51,7 +51,6 @@ jobs:
         working-directory: '${{env.BUILD_DIR}}'
         run: |
           cmake --build . --config Release -t vpkeditcli -- -j$(nproc)
-          cmake --build . --config Release -t vpkedit -- -j$(nproc)
 
       - name: Fixup Binaries
         run: |
