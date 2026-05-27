@@ -9,7 +9,6 @@
 #include <argparse/argparse.hpp>
 #include <bsppp/PakLump.h>
 #include <indicators/indeterminate_progress_bar.hpp>
-#include <sourcepp/crypto/String.h>
 #include <vpkpp/vpkpp.h>
 
 #include <Config.h>
