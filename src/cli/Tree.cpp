@@ -52,15 +52,15 @@ void printTree(std::unique_ptr<TreeNode>& node, const std::string& prefix = "", 
 			sizeExt = "gb";
 		}
 
-		std::cout << (isLast ? "└─ " : "│  ") << CLR_FG_GREEN_START << node->name << CLR_END << " - " << CLR_FG_BOLD_RED_START;
+		std::cout << (isLast ? "└─ " : "│  ") << node->name << " - ";
 		if (sizeExt == "b") {
 			std::cout << static_cast<uint16_t>(filesize);
 		} else {
 			std::cout << std::fixed << std::setprecision(2) << filesize;
 		}
-		std::cout << ' ' << sizeExt << CLR_END << std::endl;
+		std::cout << ' ' << sizeExt << std::endl;
 	} else if (!prefix.empty()) {
-		std::cout << (isLast ? "└─ " : "├─ ") << CLR_FG_CYAN_START << node->name << CLR_END << std::endl;
+		std::cout << (isLast ? "└─ " : "├─ ") << node->name << std::endl;
 	}
 
 	std::string childPrefix = prefix + (isLast ? "   " : "│  ");
@@ -79,6 +79,6 @@ void prettyPrintPackFile(std::unique_ptr<PackFile>& packFile) {
 		::insertPath(root, string::split(path, '/'), entry);
 	});
 
-	std::cout << CLR_BG_MAGENTA_START << packFile->getTruncatedFilename() << CLR_END << std::endl;
+	std::cout << packFile->getFilepath() << std::endl;
 	::printTree(root);
 }
