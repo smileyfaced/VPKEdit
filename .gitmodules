@@ -13,4 +13,4 @@
 [submodule "src/shared/thirdparty/sourcepp"]
 	path = ext/shared/sourcepp
 	url = https://github.com/smileyfaced/sourcepp
-	branch = test2
+	branch = test1
