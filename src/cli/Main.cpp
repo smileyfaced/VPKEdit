@@ -93,7 +93,7 @@ namespace {
 				std::cout << "Decryption key for depot ID " << gcf->getAppID() << ": ";
 				std::getline(std::cin, hex);
 			}
-			auto bytes = sourcepp::crypto::decodeHexString(hex);
+			auto bytes = sourcepp::string::decodeHex(hex);
 			while (bytes.size() < 16) {
 				bytes.push_back({});
 			}
