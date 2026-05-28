@@ -3,3 +3,4 @@
 #include <vpkpp/PackFile.h>
 
 void prettyPrintPackFile(std::unique_ptr<vpkpp::PackFile>& packFile);
+std::set<std::string> storeExtensions;
