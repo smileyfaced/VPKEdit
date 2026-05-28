@@ -227,20 +227,6 @@ jobs:
             ${{env.BUILD_DIR}}/xcbglintegrations/*.so*
           retention-days: 7
 
-      - name: Create Installer [target:VPKEdit]
-        if: ${{matrix.target == 'VPKEdit'}}
-        working-directory: ${{env.BUILD_DIR}}
-        run: cpack
-
-      - name: Upload Installer [target:VPKEdit]
-        if: ${{matrix.target == 'VPKEdit'}}
-        uses: actions/upload-artifact@v4
-        with:
-          name: '${{matrix.target}}-Linux-Installer-gcc-${{matrix.build_type}}'
-          path: |
-            ${{env.BUILD_DIR}}/VPKEdit-*-Linux.deb
-          retention-days: 7
-
   deploy:
     needs:
       - build-windows
