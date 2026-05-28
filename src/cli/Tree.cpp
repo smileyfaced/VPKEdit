@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <map>
+#include <set>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -23,8 +24,6 @@ struct TreeNode {
 	const Entry* entry = nullptr;
 	std::map<std::string, std::unique_ptr<TreeNode>> children;
 };
-
-std::set<std::string> storeExtensions;
 
 void insertPath(std::unique_ptr<TreeNode>& node, const std::vector<std::string>& parts, const Entry& entry, uint64_t index = 0) {
 	if (index == parts.size()) return;
@@ -92,9 +91,12 @@ void prettyPrintPackFile(std::unique_ptr<PackFile>& packFile) {
 	::printTree(root);
 
 	if (!storeExtensions.empty()) {
-		std::cout << "File extensions: ";
+		std::cerr << "File extensions: ";
 	}
 	for (const auto& s : storeExtensions) {
-        std::cout << s << ", ";
+        std::cerr << s << ", ";
     }
+	if (!storeExtensions.empty()) {
+		std::cerr << std::endl;
+	}
 }
