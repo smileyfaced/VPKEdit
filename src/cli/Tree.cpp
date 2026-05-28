@@ -24,6 +24,8 @@ struct TreeNode {
 	std::map<std::string, std::unique_ptr<TreeNode>> children;
 };
 
+std::set<std::string> storeExtensions;
+
 void insertPath(std::unique_ptr<TreeNode>& node, const std::vector<std::string>& parts, const Entry& entry, uint64_t index = 0) {
 	if (index == parts.size()) return;
 
@@ -37,6 +39,11 @@ void insertPath(std::unique_ptr<TreeNode>& node, const std::vector<std::string>&
 void printTree(std::unique_ptr<TreeNode>& node, const std::string& prefix = "", bool isLast = true) {
 	std::cout << prefix;
 	if (node->children.empty() && node->entry) {
+		size_t lastPos = node->name.find_last_of('.');
+		if (lastPos != std::string::npos) {
+			storeExtensions.insert(node->name.substr(lastPos));
+		}
+		
 		double filesize = node->entry->length;
 		std::string sizeExt = "b";
 		if (filesize > 1024) {
@@ -73,6 +80,8 @@ void printTree(std::unique_ptr<TreeNode>& node, const std::string& prefix = "", 
 } // namespace
 
 void prettyPrintPackFile(std::unique_ptr<PackFile>& packFile) {
+	storeExtensions.clear();
+	
 	std::unique_ptr<TreeNode> root{new TreeNode{packFile->getTruncatedFilename()}};
 
 	packFile->runForAllEntries([&root](const std::string& path, const Entry& entry) {
@@ -81,4 +90,11 @@ void prettyPrintPackFile(std::unique_ptr<PackFile>& packFile) {
 
 	std::cout << packFile->getFilepath() << std::endl;
 	::printTree(root);
+
+	if (!storeExtensions.empty()) {
+		std::cout << "File extensions: ";
+	}
+	for (const auto& s : storeExtensions) {
+        std::cout << s << ", ";
+    }
 }
