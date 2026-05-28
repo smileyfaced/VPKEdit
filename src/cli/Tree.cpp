@@ -18,8 +18,6 @@ constexpr std::string_view CLR_FG_GREEN_START = "\033[32m";
 constexpr std::string_view CLR_FG_CYAN_START = "\033[36m";
 constexpr std::string_view CLR_END = "\033[0m";
 
-std::set<std::string> storeExtensions;
-
 struct TreeNode {
 	std::string name;
 	const Entry* entry = nullptr;
